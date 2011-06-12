@@ -1,11 +1,8 @@
-What?! No web.xml?
-We're using maven appassembler and assembly plugins to package everything into a format that can be started directly,
-without the need to set up an external servlet container (we embed Jetty).
+Harpoon was built as a demo for a Velocity (http://velocityconf.com/) workshop on the topic of 'automated web performance testing'. It was built to provide a way to store and analyze performance test results.
 
 Building the project:
 $ mvn -Prelease
-* Inside the target dir you'll see a zip file and a tar.gz (e.g. 'target/harpoon-1.0-SNAPSHOT-bin.tar.gz'). They contain
-  the same thing, so use whichever format you prefer.
+* Inside the target dir you'll see a zip file and a tar.gz (e.g. 'target/harpoon-1.0-SNAPSHOT-bin.tar.gz'). They contain the same thing, so use whichever format you prefer.
 
 Running the project
 * Install MongoDB (http://www.mongodb.org/display/DOCS/Quickstart)
@@ -17,3 +14,6 @@ $ chmod u+x bin/harpoon // If you're running from *nix, you need to make the lau
   If you're running on win, execute harpoon.bat.
   If you're running on *nix, execute harpoon (sh harpoon)
 * Open your browser to http://localhost:8080
+
+What? No web.xml?
+We're using maven appassembler and assembly plugins to package everything into a format that can be started directly, without the need to set up an external servlet container (we embed Jetty).
