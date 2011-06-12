@@ -1,4 +1,4 @@
-package com.webmetrics.util;
+package com.webmetrics.harpoon.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

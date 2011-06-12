@@ -1,11 +1,11 @@
-package com.webmetrics;
+package com.webmetrics.harpoon;
 
-import com.webmetrics.web.TestResultsService;
-import com.webmetrics.util.Log;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.sitebricks.SitebricksModule;
+import com.webmetrics.harpoon.util.Log;
+import com.webmetrics.harpoon.web.TestResultsService;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 

@@ -59,27 +59,27 @@ div.net-bar div {
     white-space: nowrap;
 }
 div.net-resolving-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 -16px #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -16px #fff;
     z-index: 7;
 }
 div.net-connecting-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 -32px #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -32px #fff;
     z-index: 6;
 }
 div.net-blocking-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 0 #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 0 #fff;
     z-index: 5;
 }
 div.net-sending-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 -48px #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -48px #fff;
     z-index: 4;
 }
 div.net-waiting-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 -64px #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -64px #fff;
     z-index: 3;
 }
 div.net-receiving-bar {
-    background: url("/images/harlet/timeline-sprites.png") repeat-x scroll 0 -80px #fff;
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -80px #fff;
     z-index: 2;
 }
 div.net-time {

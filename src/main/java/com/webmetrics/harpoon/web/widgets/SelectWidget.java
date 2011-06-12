@@ -1,4 +1,4 @@
-package com.webmetrics.web.widgets;
+package com.webmetrics.harpoon.web.widgets;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.Evaluator;

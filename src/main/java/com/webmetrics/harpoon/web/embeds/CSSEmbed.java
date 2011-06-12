@@ -1,4 +1,4 @@
-package com.webmetrics.web.embeds;
+package com.webmetrics.harpoon.web.embeds;
 
 import com.google.sitebricks.rendering.EmbedAs;
 

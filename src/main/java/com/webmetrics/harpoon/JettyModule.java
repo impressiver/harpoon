@@ -1,8 +1,8 @@
-package com.webmetrics;
+package com.webmetrics.harpoon;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
-import com.webmetrics.providers.JettyServerProvider;
+import com.webmetrics.harpoon.providers.JettyServerProvider;
 import org.eclipse.jetty.server.Server;
 
 public class JettyModule implements Module {

@@ -1,10 +1,10 @@
-package com.webmetrics.web;
+package com.webmetrics.harpoon.web;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
-import com.webmetrics.data.TestResult;
-import com.webmetrics.data.TestResultDAO;
+import com.webmetrics.harpoon.data.TestResult;
+import com.webmetrics.harpoon.data.TestResultDAO;
 
 import java.util.List;
 

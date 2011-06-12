@@ -1,4 +1,4 @@
-package com.webmetrics.web;
+package com.webmetrics.harpoon.web;
 
 import com.google.code.morphia.Key;
 import com.google.inject.Inject;
@@ -10,8 +10,8 @@ import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
-import com.webmetrics.data.TestResult;
-import com.webmetrics.data.TestResultDAO;
+import com.webmetrics.harpoon.data.TestResult;
+import com.webmetrics.harpoon.data.TestResultDAO;
 import org.bson.types.ObjectId;
 
 import javax.servlet.http.HttpServletRequest;

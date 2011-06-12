@@ -1,4 +1,4 @@
-package com.webmetrics.web;
+package com.webmetrics.harpoon.web;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -7,9 +7,9 @@ import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Get;
-import com.webmetrics.data.TestEntry;
-import com.webmetrics.data.TestResult;
-import com.webmetrics.data.TestResultDAO;
+import com.webmetrics.harpoon.data.TestEntry;
+import com.webmetrics.harpoon.data.TestResult;
+import com.webmetrics.harpoon.data.TestResultDAO;
 import org.apache.commons.lang.CharEncoding;
 import org.browsermob.core.har.HarEntry;
 

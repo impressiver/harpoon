@@ -1,4 +1,4 @@
-package com.webmetrics.data;
+package com.webmetrics.harpoon.data;
 
 import org.browsermob.core.har.HarEntry;
 

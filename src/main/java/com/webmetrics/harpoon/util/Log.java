@@ -1,4 +1,4 @@
-package com.webmetrics.util;
+package com.webmetrics.harpoon.util;
 
 import java.util.logging.*;
 

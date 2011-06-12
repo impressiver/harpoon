@@ -1,4 +1,4 @@
-package com.webmetrics.data;
+package com.webmetrics.harpoon.data;
 
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;

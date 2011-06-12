@@ -1,4 +1,4 @@
-package com.webmetrics.data;
+package com.webmetrics.harpoon.data;
 
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;

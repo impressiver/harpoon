@@ -1,4 +1,4 @@
-package com.webmetrics.providers;
+package com.webmetrics.harpoon.providers;
 
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
