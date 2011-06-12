@@ -2,3 +2,5 @@
 * Install mongo (http://www.mongodb.org/downloads)
 * Start mongod
 
+What?! No web.xml?
+I'm using appassembler (maven plugin) to package everything into a format that can be started directly, without the need to set up an external servlet container.
