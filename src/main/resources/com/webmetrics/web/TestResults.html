@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" /> 
+    <title>Harpoon</title>
+    <script src="https://www.google.com/jsapi?key=ABQIAAAA9wX2_6HNAbHi4XF-TlEXlBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxR-ND3sOL6m-_dxgi57F9VKfFi6Jw" type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    google.load("jquery", "1.6.1");
+    google.load("jqueryui", "1.8.13");
+
+    //]]>
+    </script>
+
+    <script type="text/javascript" src="/js/jquery.center.js"></script>
+    <script type="text/javascript" src="/js/jquery.peep.js"></script>
+    <script type="text/javascript" src="/js/jquery.harlet.js"></script>
+    <script type="text/javascript" src="/js/jquery.harlet.harpoon.js"></script>
+    <script type="text/javascript" src="/js/jquery.jqBarGraph.1.1.js"></script>
+
+    <!-- 960.gs -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/text.css" />
+
+    <link rel="stylesheet" href="/css/harlet.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+</head>
+
+<body>
+    <header id="header">
+        <span id="harpoon">Harpoon</span>
+    </header>
+
+    <nav id="left">
+        <ul id="results-list">
+            @Repeat(items=testResults, var="result")
+            <li id="result-${result.id}" class="result ${result.success ? 'success' : 'failure'}">
+                <span class="status"></span>
+                <span class="name"><a class="link result-link">${result.name}</a></span>
+                <span class="summary">${result.description}</span>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="main">
+        <div id="content">
+            <div id="details">
+                <div id="details-test-name" class="clearfix">
+                    <span class="label">Test Name:</span>
+                    <strong><span class="detail"></span></strong>
+                </div>
+                <div id="details-test-description" class="clearfix">
+                    <span class="label">Description:</span>
+                    <span class="detail"></span>
+                </div>
+                <div id="details-test-error" class="clearfix">
+                    <span class="label">Error:</span>
+                    <span class="detail"></span>
+                </div>
+                <div id="details-test-created" class="clearfix">
+                    <span class="label">Created:</span>
+                    <span class="detail"></span>
+                </div>
+            </div>
+            <div id="charts">
+                <div id="chart-left" class="chart clearfix"></div>
+            </div>
+            <div id="waterfall-container" class="clearfix"></div>
+        </div>
+    </div>
+
+<script>
+    // TODO: Move these somewhere
+    // From jquery.harlet.js
+    function parseISO8601(text) {
+        // Date time pattern: YYYY-MM-DDThh:mm:ss.sTZD
+        // eg 1997-07-16T19:20:30.451+01:00
+        // http://www.w3.org/TR/NOTE-datetime
+        var regex = /(\d\d\d\d)(-)?(\d\d)(-)?(\d\d)(T)?(\d\d)(:)?(\d\d)(:)?(\d\d)(\.\d+)?(Z|([+-])(\d\d)(:)?(\d\d))/;
+        var reg = new RegExp(regex);
+        var m = text.toString().match(new RegExp(regex));
+        if (!m)
+            return null;
+
+        var date = new Date();
+        date.setUTCDate(1);
+        date.setUTCFullYear(parseInt(m[1], 10));
+        date.setUTCMonth(parseInt(m[3], 10) - 1);
+        date.setUTCDate(parseInt(m[5], 10));
+        date.setUTCHours(parseInt(m[7], 10));
+        date.setUTCMinutes(parseInt(m[9], 10));
+        date.setUTCSeconds(parseInt(m[11], 10));
+
+        if (m[12])
+            date.setUTCMilliseconds(parseFloat(m[12]) * 1000);
+        else
+            date.setUTCMilliseconds(0);
+
+        if (m[13] != 'Z') {
+            var offset = (m[15] * 60) + parseInt(m[17], 10);
+            offset *= ((m[14] == '-') ? -1 : 1);
+            date.setTime(date.getTime() - offset * 60 * 1000);
+        }
+
+        return date.getTime();
+    }
+
+    var harlet = $.harlet($("#waterfall-container"));
+
+    // Activate the test results links
+    $("#results-list li").click(function() {
+        getResult(this.id.substring(7));
+
+        $("#results-list li").removeClass("selected");
+        $(this).addClass("selected");
+    });
+
+    // AJAX in a test result
+    var getResult = function (id) {
+        $.getJSON("/test-results/" + id, function (data) {
+            $("#charts").hide();
+
+            $("#details-test-name span.detail").html(data.name);
+
+            if (data.description) {
+                $("#details-test-description span.detail").html(data.description);
+                $("#details-test-description").show();
+            } else {
+                $("#details-test-description").hide();
+            }
+
+            if (data.error) {
+                $("#details-test-error span.detail").html(data.error.message);
+                $("#details-test-error").show();
+            } else {
+                $("#details-test-error").hide();
+            }
+
+            if (data.created) {
+                var created = new Date(data.created);
+                $("#details-test-created span.detail").html($.datepicker.formatDate('MM d, yy', created) + " " + created.getHours() + ":" + created.getMinutes() + ":" + created.getSeconds());
+                $("#details-test-created").show();
+            } else {
+                $("#details-test-created span.detail").html("");
+                $("#details-test-created").hide();
+            }
+
+            $("#details").show();
+
+            harlet.setHar(data.har);
+        });
+    }
+
+    // AJAX in an object history
+    var getRequestHistory = function (uri) {
+        var testName = $("#details-test-name span.detail").text();
+        $.getJSON("/request-history/" + encodeURIComponent(testName) + "/" + encodeURIComponent(uri), function (data) {
+            var chartData = [];
+
+            for (var i = 0; i < data.length; i++) {
+                var entry = data[i],
+                    timings = [];
+
+                if (entry.harEntry.timings) {
+                    timings.push(entry.harEntry.timings.blocked || 0);
+                    timings.push(entry.harEntry.timings.dns || 0);
+                    timings.push(entry.harEntry.timings.connect || 0);
+                    timings.push(entry.harEntry.timings.send || 0);
+                    timings.push(entry.harEntry.timings.wait || 0);
+                    timings.push(entry.harEntry.timings.receive || 0);
+
+                    var date = new Date(parseISO8601(entry.harEntry.startedDateTime));
+                    var chartEntry = [timings, date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()];
+                    chartData.push(chartEntry);
+                }
+            }
+
+            $("#chart-left").html("");
+            $("#chart-left").jqBarGraph({
+                data: chartData,
+                colors: ['#cfc7bc','#53c0c4','#86cd59','#e56a62','#a78fb8','#bbb'],
+                legends: ["blocked", "dns", "connect", "send", "wait", "receive"],
+                legend: true,
+                barSpace: 5,
+                postfix: 'ms',
+                speed: 1,
+                showValues: false,
+                height: 150,
+                width: 500
+            });
+
+            $("#charts").show();
+        });
+    }
+</script>
+
+</body>
+</html>

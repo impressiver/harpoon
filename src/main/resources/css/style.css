@@ -1,0 +1,194 @@
+html {
+    background-color: #eee;
+}
+
+/* float clearing for IE6 */
+* html .clearfix{
+  height: 1%;
+  overflow: visible;
+}
+
+/* float clearing for IE7 */
+*+html .clearfix{
+  min-height: 1%;
+}
+
+/* float clearing for everyone else */
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
+a.link {
+    cursor: pointer;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    color: #fff;
+    z-index: 999;
+
+    /* http://ie.microsoft.com/testdrive/graphics/cssgradientbackgroundmaker/default.html */
+    /* IE10 */
+    background-image: -ms-linear-gradient(top, #42577A 0%, #102840 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #42577A 0%, #102840 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #42577A 0%, #102840 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #42577A), color-stop(1, #102840));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #42577A 0%, #102840 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(top, #42577A 0%, #102840 100%);
+}
+#header #harpoon {
+    padding: 10px;
+    font-size: 24px;
+    text-shadow: 0 -1px 1px #234;
+}
+
+#left {
+    position: fixed;
+    top: 40px;
+    bottom: 0;
+    width: 300px;
+    overflow-y: auto;
+    margin-right: 10px;
+    background-color: #d0d6d9;
+    border-right: 1px solid #ccc;
+}
+#results-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+#results-list li {
+    display: block;
+    position: relative;
+    height: 35px;
+    margin: 0;
+    padding: 5px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+#results-list li:hover {
+    background-image: -ms-linear-gradient(top, #F9F9F9 0%, #DDDDDD 100%);
+    background-image: -moz-linear-gradient(top, #F9F9F9 0%, #DDDDDD 100%);
+    background-image: -o-linear-gradient(top, #F9F9F9 0%, #DDDDDD 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F9F9F9), color-stop(1, #DDDDDD));
+    background-image: -webkit-linear-gradient(top, #F9F9F9 0%, #DDDDDD 100%);
+    background-image: linear-gradient(top, #F9F9F9 0%, #DDDDDD 100%);
+}
+#results-list li.selected {
+    background-image: -ms-linear-gradient(top, #5C90F9 0%, #2846DD 100%);
+    background-image: -moz-linear-gradient(top, #5C90F9 0%, #2846DD 100%);
+    background-image: -o-linear-gradient(top, #5C90F9 0%, #2846DD 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #5C90F9), color-stop(1, #2846DD));
+    background-image: -webkit-linear-gradient(top, #5C90F9 0%, #2846DD 100%);
+    background-image: linear-gradient(top, #5C90F9 0%, #2846DD 100%);
+}
+#results-list li span.name {
+    display: block;
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+}
+#results-list li.selected span.name {
+    color: #fff;
+    text-shadow: 0 -1px 0px #557;
+}
+#results-list li span.created {
+    display: block;
+    position: absolute;
+    top: 38px;
+    left: 30px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 11px;
+    color: #679;
+    overflow: hidden;
+}
+#results-list li span.summary {
+    display: block;
+    position: absolute;
+    top: 22px;
+    left: 30px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+}
+#results-list li.selected span.summary,
+#results-list li.selected span.created {
+    color: #fff;
+    text-shadow: 0 -1px 0px #001;
+}
+#results-list li span.status {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    margin-top: -8px;
+    height: 16px;
+    width: 16px;
+    background: transparent url(/images/sprite-status.png) no-repeat left top;
+    overflow: hidden;
+}
+#results-list li.success span.status {
+    background-position: 0 -16px;
+}
+#results-list li.failure span.status {
+    background-position: 0 -32px;
+}
+
+#main {
+    position: absolute;
+    top: 40px;
+    left: 301px;
+    right: 0;
+    overflow: hidden;
+    background-color: #fff;
+}
+#details {
+    padding: 10px 0;
+    margin: 10px;
+    border-bottom: 1px solid #ddd;
+    display: none;
+}
+#details span.label {
+    display: block;
+    float: left;
+    width: 100px;
+    color: #666;
+}
+
+#waterfall-container {
+    border-bottom:  1px solid #999;
+}
+#waterfall-container tr th {
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+#charts {
+    display: none;
+    padding: 20px 0;
+}
+#charts div.chart {
+    height: 150px;
+    width: 300px;
+    font-size: 10px;
+}
