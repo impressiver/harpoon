@@ -1,6 +1,19 @@
-# Added morpia repository to nexus (http://morphia.googlecode.com/svn/mavenrepo/)
-* Install mongo (http://www.mongodb.org/downloads)
-* Start mongod
-
 What?! No web.xml?
-I'm using appassembler (maven plugin) to package everything into a format that can be started directly, without the need to set up an external servlet container.
+We're using maven appassembler and assembly plugins to package everything into a format that can be started directly,
+without the need to set up an external servlet container (we embed Jetty).
+
+Building the project:
+$ mvn -Prelease
+* Inside the target dir you'll see a zip file and a tar.gz (e.g. 'target/harpoon-1.0-SNAPSHOT-bin.tar.gz'). They contain
+  the same thing, so use whichever format you prefer.
+
+Running the project
+* Install MongoDB (http://www.mongodb.org/display/DOCS/Quickstart)
+  GOTCHA: make sure you create the default data directory (mkdir -p /data/db) if this is your first time using MongoDB
+* Start mongod
+* Unpack the archive to the directory where you want the Harpoon webapp to live
+$ chmod u+x bin/harpoon // If you're running from *nix, you need to make the launch script executable
+* Inside the bin directory there are two files: harpoon and harpoon.bat.
+  If you're running on win, execute harpoon.bat.
+  If you're running on *nix, execute harpoon (sh harpoon)
+* Open your browser to http://localhost:8080
