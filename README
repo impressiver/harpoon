@@ -1,0 +1,4 @@
+# Added morpia repository to nexus (http://morphia.googlecode.com/svn/mavenrepo/)
+* Install mongo (http://www.mongodb.org/downloads)
+* Start mongod
+
