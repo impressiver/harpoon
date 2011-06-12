@@ -1,0 +1,115 @@
+/*****Waterfall*****/
+#waterfall-container {
+    display: none;
+    font-size: 11px;
+}
+#waterfall-container table.harlet-net {
+    table-layout: fixed;
+}
+#waterfall-container tr th {
+    padding-left: 10px;
+    color: #000;
+}
+#waterfall-container tbody tr:hover {
+    background-color: #f0f0f0;
+}
+#waterfall-container tr.page-row,
+#waterfall-container tr.page-row:hover {
+    background-color: #ddd;
+}
+#waterfall-container tr.page-row td {
+    text-align: center;
+    border-top: 1px solid #d0d0d0;
+    border-right: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c9c9c9;
+    border-left: 1px solid #dfdfdf;
+}
+#waterfall-container tr.data-row,
+#waterfall-container tr.data-row:hover {
+    color: #999;
+    background-color: #f9f9f9;
+}
+#waterfall-container tr td {
+    margin-right: 5px;
+    padding-left: 10px;
+    border-top: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height:22px;
+}
+#waterfall-container tr td.bytes {
+    text-align: right;
+}
+#waterfall-container tr td.chart {
+    vertical-align: top;
+}
+
+div.net-bar {
+    position: relative;
+    white-space: nowrap;
+    margin-right: 50px;
+}
+div.net-bar div {
+    position: absolute;
+    height: 16px;
+    left: 0;
+    min-width: 0;
+    position: absolute;
+    top: 3px;
+    white-space: nowrap;
+}
+div.net-resolving-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -16px #fff;
+    z-index: 7;
+}
+div.net-connecting-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -32px #fff;
+    z-index: 6;
+}
+div.net-blocking-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 0 #fff;
+    z-index: 5;
+}
+div.net-sending-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -48px #fff;
+    z-index: 4;
+}
+div.net-waiting-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -64px #fff;
+    z-index: 3;
+}
+div.net-receiving-bar {
+    background: url("/src/main/webapp/images/harlet/timeline-sprites.png") repeat-x scroll 0 -80px #fff;
+    z-index: 2;
+}
+div.net-time {
+    top: 0 !important;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+#harlet-tooltip {
+    padding: 10px;
+    font-size: 11px;
+    background-color: #f9f9f9;
+    border: 1px solid #69c;
+    border-radius: 5px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    box-shadow: rgba(0,0,0, 0.4) 0px 4px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.4) 0px 4px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.4) 0px 4px 8px;
+    z-index: 99;
+
+	background: -webkit-gradient(linear, left bottom, left 50, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(bottom, #FFFFFF, #EEEEEE 1px, #FFFFFF 50px);
+}
+
+.peep {
+    font-size: 11px;
+    z-index: 99;
+}
+
+div#loading {
+    text-align: center;
+}
