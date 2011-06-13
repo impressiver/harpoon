@@ -119,7 +119,6 @@
     // AJAX in a test result
     var getResult = function (id) {
         $.getJSON("/test-results/" + id, function (data) {
-            $("#charts").hide();
 
             $("#details-test-name span.detail").html(data.name);
 
@@ -149,8 +148,65 @@
             $("#details").show();
 
             harlet.setHar(data.har);
+
+            // now get a chart of the last 100 resuls for the same test
+            getTestHistory(data.name)
         });
-    }
+    };
+
+    var getTestHistory = function (testName) {
+        $.getJSON("/test-results/name/" + encodeURIComponent(testName), function (data) {
+            var chartData = [];
+            
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i],
+                    timings = [0,0,0,0,0,0],
+                    maxTime = 0,
+                    minTime = 0;
+
+                for(var j = 0; j < result.har.log.entries.length; j++) {
+                    var entry = result.har.log.entries[j];
+                    var startedTime = parseISO8601(entry.startedDateTime);
+
+                    if (!minTime || startedTime < minTime)
+                        minTime = startedTime;
+
+                    var entryEndTime = startedTime + entry.time;
+                    if (entryEndTime > maxTime)
+                        maxTime = entryEndTime;
+
+                    /*
+                    if (entry.timings) {
+                        timings[0] += (entry.timings.blocked || 0);
+                        timings[1] += (entry.timings.dns || 0);
+                        timings[2] += (entry.timings.connect || 0);
+                        timings[3] += (entry.timings.send || 0);
+                        timings[4] += (entry.timings.wait || 0);
+                        timings[5] += (entry.timings.receive || 0);
+                    }
+                    */
+                }
+
+                var date = new Date(result.created);
+                var chartEntry = [[maxTime - minTime], date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()];
+                chartData.push(chartEntry);
+            }
+
+            $("#chart-left").html("");
+            $("#chart-left").jqBarGraph({
+                data: chartData,
+                colors: ['#9a89d0'],
+                legends: ["Total Time"],
+                legend: true,
+                barSpace: 5,
+                postfix: 'ms',
+                speed: 1,
+                showValues: false,
+                height: 150,
+                width: 500
+            });
+        });
+    };
 
     // AJAX in an object history
     var getRequestHistory = function (uri) {
@@ -189,8 +245,6 @@
                 height: 150,
                 width: 500
             });
-
-            $("#charts").show();
         });
     }
 </script>

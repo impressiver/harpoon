@@ -12,9 +12,13 @@ import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.webmetrics.harpoon.data.TestResult;
 import com.webmetrics.harpoon.data.TestResultDAO;
+import org.apache.commons.lang.CharEncoding;
 import org.bson.types.ObjectId;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
 
 @At("/test-results")
 @Service
@@ -37,6 +41,26 @@ public class TestResultsService {
         TestResult result = testResultDAO.findOne("id", new ObjectId(id));
 
         return Reply.with(result).as(Json.class);
+    }
+
+    @Get
+    @At("/name/:name")
+    public Reply<?> getTestResultsByTestName(@Named("name") String name) {
+        if (null == name) {
+            System.out.println("No test name specified!");
+            return Reply.saying().notFound();
+        }
+
+        String decodedName;
+        try {
+            decodedName = URLDecoder.decode(name, CharEncoding.UTF_8);
+        } catch (UnsupportedEncodingException e) {
+            return Reply.saying().status(500);
+        }
+
+        List<TestResult> results = testResultDAO.findByTestName(decodedName, 100);
+
+        return Reply.with(results).as(Json.class);
     }
 
     @Post

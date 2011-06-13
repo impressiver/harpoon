@@ -23,7 +23,7 @@ public class TestResultDAO extends BasicDAO<TestResult, ObjectId> {
     }
 
     public List<TestResult> findByTestName(String testName, int limit) {
-        return ds.find(entityClazz).filter("name", testName).order("-created").limit(limit).asList();
+        return ds.find(entityClazz).filter("name", testName).order("created").limit(limit).asList();
     }
 
     public List<TestResult> findByRequestUrl(String uri, int limit) {
@@ -31,6 +31,6 @@ public class TestResultDAO extends BasicDAO<TestResult, ObjectId> {
     }
 
     public List<TestResult> findByRequestUrl(String uri, String testName, int limit) {
-        return ds.find(entityClazz).filter("name", testName).filter("har.log.entries.request.url", uri).order("-created").limit(limit).asList();
+        return ds.find(entityClazz).filter("name", testName).filter("har.log.entries.request.url", uri).order("created").limit(limit).asList();
     }
 }

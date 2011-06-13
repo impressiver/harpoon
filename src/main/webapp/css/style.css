@@ -184,8 +184,8 @@ a.link {
 }
 
 #charts {
-    display: none;
     padding: 20px 0;
+    border-bottom: 1px solid #eee;
 }
 #charts div.chart {
     height: 150px;
