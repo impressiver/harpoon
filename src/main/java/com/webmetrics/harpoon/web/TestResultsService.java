@@ -55,7 +55,7 @@ public class TestResultsService {
         try {
             decodedName = URLDecoder.decode(name, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
-            return Reply.saying().status(500);
+            return Reply.saying().error();
         }
 
         List<TestResult> results = testResultDAO.findByTestName(decodedName, 100);

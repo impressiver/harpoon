@@ -51,9 +51,14 @@ a.link {
     background-image: linear-gradient(top, #42577A 0%, #102840 100%);
 }
 #header #harpoon {
-    padding: 10px;
+    padding: 0 10px;
     font-size: 24px;
     text-shadow: 0 -1px 1px #234;
+}
+#header #harpoon a,
+#header #harpoon a:link {
+    color: #fff;
+    text-decoration: none;
 }
 
 #left {
@@ -62,6 +67,7 @@ a.link {
     bottom: 0;
     width: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
     margin-right: 10px;
     background-color: #d0d6d9;
     border-right: 1px solid #ccc;
@@ -189,6 +195,6 @@ a.link {
 }
 #charts div.chart {
     height: 150px;
-    width: 300px;
+    width: 100%;
     font-size: 10px;
 }
